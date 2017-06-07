@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Tag支持的所有技术标准
+    android.nfc.tech.IsoDep
+    android.nfc.tech.NfcA
+    android.nfc.tech.NfcB
+    android.nfc.tech.NfcF
+    android.nfc.tech.NfcV
+    android.nfc.tech.Ndef
+    android.nfc.tech.NdefFormatable
+    android.nfc.tech.MifareClassic
+    android.nfc.tech.MifareUltralight-->
+    <!--多个<tech-list>元素之间是OR关系，<tech-list>元素中的<tech>是AND关系,
+    只要任何单个tech-list集合是getTechList()返回的technologies集合的子集，那么你的Activity将被认为匹配了-->
+    <tech-list>
+        <tech>android.nfc.tech.Ndef</tech>
+        <tech>android.nfc.tech.MifareClassic</tech>
+    </tech-list>
+    <!--或-->
+    <tech-list>
+        <tech>android.nfc.tech.IsoDep</tech>
+        <tech>android.nfc.tech.NfcA</tech>
+        <tech>android.nfc.tech.NfcB</tech>
+        <tech>android.nfc.tech.NfcF</tech>
+        <tech>android.nfc.tech.NfcV</tech>
+        <tech>android.nfc.tech.Ndef</tech>
+        <tech>android.nfc.tech.NdefFormatable</tech>
+        <tech>android.nfc.tech.MifareClassic</tech>
+        <tech>android.nfc.tech.MifareUltralight</tech>
+    </tech-list>
+</resources>

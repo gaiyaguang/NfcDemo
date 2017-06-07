@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.gyg.nfc">
+
+    <!--API level 9只包含有限的tag支持,包括：
+    .通过ACTION_TAG_DISCOVERED来发布Tag信息
+    .只有通过EXTRA_NDEF_MESSAGES扩展来访问NDEF消息
+    .其他的tag属性和I/O操作都不支持
+    所以你可能想要用API level 10来实现对tag的广泛的读写支持。-->
+    <uses-sdk android:minSdkVersion="10"/>
+    <!--NFC权限-->
+    <uses-permission android:name="android.permission.NFC" />
+    <!-- 要求当前设备必须要有NFC芯片 -->
+    <uses-feature android:name="android.hardware.nfc" android:required="true" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".NdefActivity"
+            android:launchMode="singleTop"
+            android:label="读写NDEF格式"
+            >
+            <intent-filter>
+                <!--配置Activity处理Tag的优先级-->
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".MifareClassicActivity"
+            android:launchMode="singleTop"
+            android:label="读写MIFARECLASSIC格式"
+            >
+            <intent-filter>
+                <action android:name="android.nfc.action.TECH_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+            <meta-data  android:name="android.nfc.action.TECH_DISCOVERED"
+                android:resource="@xml/tech_list"
+                />
+        </activity>
+    </application>
+
+</manifest>
